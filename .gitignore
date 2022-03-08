@@ -6,5 +6,6 @@
 
 # Jupyterlite
 _output/
+pages/
 .jupyterlite.doit.db
 
