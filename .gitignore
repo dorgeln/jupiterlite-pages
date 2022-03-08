@@ -1,0 +1,10 @@
+# Micromamba
+.micromamba/
+
+# Python
+***.pyc
+
+# Jupyterlite
+_output/
+.jupyterlite.doit.db
+
