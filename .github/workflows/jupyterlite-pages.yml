@@ -7,12 +7,12 @@ on:
   pull_request:
 
 jobs:
-  jupyterlite-pages:
+  jupyterlite-pages-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install build environment
+      - name: Create build environment
         uses: mamba-org/provision-with-micromamba@main
 
       - name: Build pages
@@ -21,7 +21,7 @@ jobs:
           mkdir -p pages
           jupyter lite build --output-dir=pages 
 
-      - name: Push to pages branch
+      - name: Push build to pages branch
         uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
