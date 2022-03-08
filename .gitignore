@@ -9,3 +9,6 @@ _output/
 pages/
 .jupyterlite.doit.db
 
+# DoIT
+.doit.*
+
