@@ -7,12 +7,12 @@ on:
   pull_request:
 
 jobs:
-  test:
+  pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Conda environment from environment.yml
+      - name: Install build environment
         uses: mamba-org/provision-with-micromamba@main
 
       - name: Build pages
@@ -20,3 +20,15 @@ jobs:
         run: |
           mkdir -p pages
           jupyter lite build --output-dir=pages 
+
+      - name: Commit pages
+        run: |
+          git config --global user.email "${GH_EMAIL}"
+          git config --global user.name "${GH_USERNAME}"
+          git add -A
+          git diff-index --quiet HEAD || git commit -am `date "+%F-%H-%M-%S"`
+          git push
+        env: 
+          GH_EMAIL: ${{ github.event.commits[0].author.email }}
+          GH_USERNAME: ${{ github.event.commits[0].author.username }}
+
