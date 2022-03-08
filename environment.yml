@@ -10,3 +10,7 @@ dependencies:
   - python=3.9
   - pip:
     - jupyterlite[all]
+    - sphinx
+    - jupyterlite-sphinx
+    - myst-parser
+    - sphinx-theme-pd
